@@ -11,6 +11,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
+    "lint": "eslint 'src/**/*.ts'",
     "build": "npm run clean && npm run lint && webpack",
     "start": "npm run build &&  NODE_TLS_REJECT_UNAUTHORIZED='0' node -r dotenv/config dist/index.js"
   },
