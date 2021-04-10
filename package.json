@@ -1,0 +1,43 @@
+{
+  "name": "feedback-slackbot",
+  "version": "1.0.0",
+  "description": "Slackbot to capture regular feedback",
+  "author": "lkloeppel",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run lint && webpack",
+    "start": "npm run build &&  NODE_TLS_REJECT_UNAUTHORIZED='0' node -r dotenv/config dist/index.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.3.0",
+    "dayjs": "^1.10.4",
+    "lodash": "^4.17.20",
+    "node-cron": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^14.11.2",
+    "@types/node-cron": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-unused-imports": "^1.1.1",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack": "^5.31.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
