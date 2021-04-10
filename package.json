@@ -8,6 +8,7 @@
     "dist"
   ],
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && npm run lint && webpack",
@@ -39,5 +40,8 @@
     "webpack": "^5.31.2",
     "webpack-cli": "^4.6.0",
     "webpack-node-externals": "^2.5.2"
+  },
+  "engines": {
+    "node": ">=8.11"
   }
 }
