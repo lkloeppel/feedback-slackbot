@@ -10,8 +10,7 @@ const feedbackReminderAction = async (bot: App) => {
     await bot.client.chat.postMessage({
       channel: reminder.userId,
       token: process.env.SLACK_BOT_TOKEN,
-      text: `Time to write down some feedback for your colleagues. Don't forget to mention them with @jon.doe in each message, 
-      to save the feedback correctly`
+      text: `Time to write down some feedback for your colleagues. Don't forget to mention them with @jon.doe in each message.`
     });
   });
 };

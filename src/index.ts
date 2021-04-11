@@ -18,6 +18,7 @@ app.command('/stop-feedback-reminder', stopFeedbackCommand);
 app.command('/get-feedback', getFeedbackCommand);
 app.action('get-feedback-for-user', getFeedbackForUserAction);
 
+// https://crontab.guru/#0_14_*_*_FRI
 cron.schedule('0 14 * * FRI', () => feedbackReminderAction(app), {
   timezone: 'Australia/Melbourne'
 });
