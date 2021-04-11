@@ -18,7 +18,9 @@ app.command('/stop-feedback-reminder', stopFeedbackCommand);
 app.command('/get-feedback', getFeedbackCommand);
 app.action('get-feedback-for-user', getFeedbackForUserAction);
 
-cron.schedule('0 12 * * FRI', () => feedbackReminderAction(app));
+cron.schedule('0 14 * * FRI', () => feedbackReminderAction(app), {
+  timezone: 'Australia/Melbourne'
+});
 
 (async () => {
   const port = Number(process.env.PORT) || 3000;
