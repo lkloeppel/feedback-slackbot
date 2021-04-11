@@ -1,22 +1,15 @@
-import { App } from '@slack/bolt';
-import stopFeedbackCommand from './handlers/stopFeedbackReminder';
-import startFeedbackCommand from './handlers/startFeedbackReminder';
-import getFeedbackCommand from './handlers/getFeedback';
-import getFeedbackForUserAction from './handlers/getFeedbackForUser';
-import chatMessageHandler from './handlers/chatMessage';
+import { App, GenericMessageEvent } from '@slack/bolt';
 
 const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   token: process.env.SLACK_app_TOKEN
 });
 
-app.message(chatMessageHandler);
-app.command('/start-feedback-reminder', startFeedbackCommand);
-app.command('/stop-feedback-reminder', stopFeedbackCommand);
-app.command('/get-feedback', getFeedbackCommand);
-app.action('get-feedback-for-user', getFeedbackForUserAction);
-
-// cron.schedule('*/10 * * * *', () => feedbackReminderAction(app));
+// Listens to all incoming direct messages
+app.message(async ({ message, say }) => {
+  // say() sends a message to the channel where the event was triggered
+  await say(`Hey there <@${(message as GenericMessageEvent).user}>!`);
+});
 
 (async () => {
   const port = Number(process.env.PORT) || 3000;
