@@ -1,5 +1,6 @@
 import { App, GenericMessageEvent } from '@slack/bolt';
 
+// Initialize the @slack/bolt app which will be the heart of our bot
 const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   token: process.env.SLACK_app_TOKEN
