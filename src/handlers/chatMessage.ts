@@ -5,9 +5,8 @@ const chatMessageHandler: Middleware<SlackEventMiddlewareArgs<'message'>> = asyn
   message,
   client
 }) => {
+  // We should only handle messages which are send as direct message
   if (message.channel_type === 'im') {
-    const sessionStore = Store.getInstance();
-
     const chatMessage = message as GenericMessageEvent;
 
     const mentionedUsers = (chatMessage.text.match(/<@[A-Z0-9]*>/g) ?? []).map(u =>
@@ -16,11 +15,13 @@ const chatMessageHandler: Middleware<SlackEventMiddlewareArgs<'message'>> = asyn
 
     const uniqueMentionedUsers = [...new Set(mentionedUsers)];
 
+    const sessionStore = Store.getInstance();
+
     if (uniqueMentionedUsers.length === 0) {
-      sessionStore.addFeedback(chatMessage.user, undefined, chatMessage.text);
+      sessionStore.addFeedback(chatMessage.text, chatMessage.user);
     } else {
       uniqueMentionedUsers.forEach(receiver => {
-        sessionStore.addFeedback(chatMessage.user, receiver, chatMessage.text);
+        sessionStore.addFeedback(chatMessage.text, chatMessage.user, receiver);
       });
     }
 

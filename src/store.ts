@@ -46,7 +46,7 @@ class Store {
     return [...this.feedbackEntries.filter(f => f.giverId === giverId)];
   }
 
-  addFeedback(giverId: string, receiverId: string, text: string) {
+  addFeedback(text: string, giverId: string, receiverId?: string) {
     this.feedbackEntries.push({
       giverId,
       receiverId,

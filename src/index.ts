@@ -9,7 +9,7 @@ import feedbackReminderAction from './handlers/feedbackReminder';
 
 const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
-  token: process.env.SLACK_app_TOKEN
+  token: process.env.SLACK_BOT_TOKEN
 });
 
 app.message(chatMessageHandler);
