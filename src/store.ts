@@ -28,7 +28,10 @@ class Store {
 
   removeReminder(userId: string) {
     if (this.doesReminderExist(userId)) {
-      this.reminders.splice(this.reminders.findIndex(r => r.userId === userId));
+      this.reminders.splice(
+        this.reminders.findIndex(r => r.userId === userId),
+        1
+      );
     }
   }
 
