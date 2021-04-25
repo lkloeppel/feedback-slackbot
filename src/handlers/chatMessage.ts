@@ -15,20 +15,20 @@ const chatMessageHandler: Middleware<SlackEventMiddlewareArgs<'message'>> = asyn
 
     const uniqueMentionedUsers = [...new Set(mentionedUsers)];
 
-    const sessionStore = Store.getInstance();
+    const store = Store.getInstance();
 
     if (uniqueMentionedUsers.length === 0) {
-      sessionStore.addFeedback(chatMessage.text, chatMessage.user);
+      store.addFeedback(chatMessage.text, chatMessage.user);
     } else {
       uniqueMentionedUsers.forEach(receiver => {
-        sessionStore.addFeedback(chatMessage.text, chatMessage.user, receiver);
+        store.addFeedback(chatMessage.text, chatMessage.user, receiver);
       });
     }
 
     client.reactions.add({
-      channel: message.channel,
+      channel: chatMessage.channel,
       name: 'white_check_mark',
-      timestamp: message.event_ts
+      timestamp: chatMessage.event_ts
     });
   }
 };

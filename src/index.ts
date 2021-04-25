@@ -2,7 +2,7 @@ import { App } from '@slack/bolt';
 import cron from 'node-cron';
 import stopFeedbackCommand from './handlers/stopFeedbackReminder';
 import startFeedbackCommand from './handlers/startFeedbackReminder';
-import getFeedbackCommand from './handlers/getFeedback';
+import printFeedbackCommand from './handlers/printFeedback';
 import getFeedbackForUserAction from './handlers/getFeedbackForUser';
 import chatMessageHandler from './handlers/chatMessage';
 import feedbackReminderAction from './handlers/feedbackReminder';
@@ -15,7 +15,7 @@ const app = new App({
 app.message(chatMessageHandler);
 app.command('/start-feedback-reminder', startFeedbackCommand);
 app.command('/stop-feedback-reminder', stopFeedbackCommand);
-app.command('/get-feedback', getFeedbackCommand);
+app.command('/print-feedback', printFeedbackCommand);
 app.action('get-feedback-for-user', getFeedbackForUserAction);
 
 // https://crontab.guru/#0_14_*_*_FRI

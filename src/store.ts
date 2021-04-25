@@ -5,14 +5,14 @@ import { Feedback, FeedbackReminder } from './types';
 dayjs.extend(utc);
 
 class Store {
-  private static instance: Store;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
 
-  private reminders: FeedbackReminder[] = [];
+  private static instance: Store;
 
   private feedbackEntries: Feedback[] = [];
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private constructor() {}
+  private reminders: FeedbackReminder[] = [];
 
   doesReminderExist(userId: string) {
     return !!this.reminders.find(s => s.userId === userId);
@@ -33,17 +33,15 @@ class Store {
   }
 
   getAllReminders() {
-    return [...this.reminders];
+    return this.reminders;
   }
 
   getFeedbackEntries(giverId: string, receiverId: string) {
-    return [
-      ...this.feedbackEntries.filter(f => f.receiverId === receiverId && f.giverId === giverId)
-    ];
+    return this.feedbackEntries.filter(f => f.receiverId === receiverId && f.giverId === giverId);
   }
 
   getAllFeedbackEntriesForUser(giverId: string) {
-    return [...this.feedbackEntries.filter(f => f.giverId === giverId)];
+    return this.feedbackEntries.filter(f => f.giverId === giverId);
   }
 
   addFeedback(text: string, giverId: string, receiverId?: string) {

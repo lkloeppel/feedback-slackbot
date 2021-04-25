@@ -20,9 +20,9 @@ const getFeedbackForUserAction: Middleware<
 
   const giverId = body.user.id;
 
-  const sessionStore = Store.getInstance();
+  const store = Store.getInstance();
 
-  const feedback = sessionStore.getFeedbackEntries(giverId, receiverId);
+  const feedback = store.getFeedbackEntries(giverId, receiverId);
 
   const name = receiverId ? `for <@${receiverId}>` : '';
 

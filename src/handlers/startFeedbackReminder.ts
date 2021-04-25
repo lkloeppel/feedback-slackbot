@@ -8,18 +8,18 @@ const startFeedbackReminderCommand: Middleware<SlackCommandMiddlewareArgs> = asy
 }) => {
   await ack();
 
-  const sessionStore = Store.getInstance();
+  const store = Store.getInstance();
 
-  if (sessionStore.doesReminderExist(command.user_id)) {
+  if (store.doesReminderExist(command.user_id)) {
     await client.chat.postMessage({
       channel: command.user_id,
-      text: 'There is already an reminder in place to provide regular feedback'
+      text: 'There is already a reminder in place to provide regular feedback'
     });
 
     return;
   }
 
-  sessionStore.addReminder(command.user_id);
+  store.addReminder(command.user_id);
 
   await client.chat.postMessage({
     channel: command.user_id,

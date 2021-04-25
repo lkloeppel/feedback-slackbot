@@ -8,9 +8,9 @@ const stopFeedbackReminderCommand: Middleware<SlackCommandMiddlewareArgs> = asyn
 }) => {
   await ack();
 
-  const sessionStore = Store.getInstance();
+  const store = Store.getInstance();
 
-  if (!sessionStore.doesReminderExist(command.user_id)) {
+  if (!store.doesReminderExist(command.user_id)) {
     await client.chat.postMessage({
       channel: command.user_id,
       text: `You currently do not have an active reminder configured`
@@ -19,7 +19,7 @@ const stopFeedbackReminderCommand: Middleware<SlackCommandMiddlewareArgs> = asyn
     return;
   }
 
-  sessionStore.removeReminder(command.user_id);
+  store.removeReminder(command.user_id);
 
   await client.chat.postMessage({
     channel: command.user_id,
